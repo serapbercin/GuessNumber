@@ -9,15 +9,19 @@
 import React from 'react';
 import {
   StyleSheet,
-  View
+  View,
+  Text
 } from 'react-native';
 
-import Header from './components/Header'
+import Header from './components/Header';
+import StartGameScreen from './screens/StartGameScreen'
 
 const App: () => React$Node = () => {
   return (
     <View style={styles.screen}>
-      <Header title={"Guess a Number"}/>
+      <Header title={"Guess a Number"} />
+      <StartGameScreen title={"Start a new game!!"}>
+      </StartGameScreen>
     </View>
   );
 };

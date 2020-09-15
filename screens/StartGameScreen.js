@@ -4,39 +4,40 @@ import {
     View,
     Text,
     StyleSheet,
-    TextInput,
     Button
 } from 'react-native';
-import { Colors } from 'react-native/Libraries/NewAppScreen';
 
 import Card from '../components/Card';
-import colors from '../constants/colors'
+import Colors from '../constants/colors';
+import Input from '../components/Input';
+
 //function methos
 
 const StartGameScreen = props => {
     //what we want to render, how should it look like?
+
     return (
         <View style={styles.screen}>
             <Text style={styles.headerTitle}>{props.title}</Text>
             <Card style={styles.inputContainer}>
                 <Text style={styles.title}>Select the number</Text>
-                <TextInput></TextInput>
+                <Input style={styles.input} blurOnSubmit autoCorrect={false} autoCapitalize='none' keyboardType="number-pad" maxLength={2}></Input>
                 <View style={styles.buttonContainer}>
                     <View style={styles.buttonStyle}>
                         <Button title="Reset" onPress={() => {
 
-                        }} color={colors.accent} />
+                        }} color={Colors.primary} />
                     </View>
 
                     <View>
                         <Button title="Confirm" onPress={() => {
 
-                        }} color={colors.primary} />
+                        }} color={Colors.accent} />
 
                     </View>
                 </View>
             </Card>
-        </View>);
+        </View >);
 }
 
 const styles = StyleSheet.create({
@@ -67,6 +68,10 @@ const styles = StyleSheet.create({
     },
     buttonStyle: {
         width: 100
+    },
+    input: {
+        width: 70,
+        textAlign: "center"
     }
 })
 

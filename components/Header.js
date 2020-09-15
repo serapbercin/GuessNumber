@@ -7,7 +7,7 @@ import {
     StyleSheet
 } from 'react-native';
 
-import colors from '../constants/colors';
+import Colors from '../constants/colors';
 
 
 const Header = props => {
@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
         width: '100%',
         height: 90,
         padding: 36,
-        backgroundColor: colors.primary,
+        backgroundColor: Colors.primary,
         alignItems: 'center',
         justifyContent: 'center'
     },

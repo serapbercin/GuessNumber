@@ -7,9 +7,10 @@ import {
     TextInput,
     Button
 } from 'react-native';
+import { Colors } from 'react-native/Libraries/NewAppScreen';
 
 import Card from '../components/Card';
-
+import colors from '../constants/colors'
 //function methos
 
 const StartGameScreen = props => {
@@ -21,12 +22,18 @@ const StartGameScreen = props => {
                 <Text style={styles.title}>Select the number</Text>
                 <TextInput></TextInput>
                 <View style={styles.buttonContainer}>
-                    <Button title="Reset" onPress={() => {
+                    <View style={styles.buttonStyle}>
+                        <Button title="Reset" onPress={() => {
 
-                    }} />
-                    <Button title="Confirm" onPress={() => {
+                        }} color={colors.accent} />
+                    </View>
 
-                    }} />
+                    <View>
+                        <Button title="Confirm" onPress={() => {
+
+                        }} color={colors.primary} />
+
+                    </View>
                 </View>
             </Card>
         </View>);
@@ -57,6 +64,9 @@ const styles = StyleSheet.create({
         width: '100%',
         justifyContent: 'space-between',
         paddingHorizontal: 15
+    },
+    buttonStyle: {
+        width: 100
     }
 })
 

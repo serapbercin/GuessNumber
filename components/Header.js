@@ -7,6 +7,8 @@ import {
     StyleSheet
 } from 'react-native';
 
+import colors from '../constants/colors';
+
 
 const Header = props => {
     return (
@@ -21,8 +23,9 @@ const styles = StyleSheet.create({
         width: '100%',
         height: 90,
         padding: 36,
-        backgroundColor: '#f7287b',
-        alignItems: 'center'
+        backgroundColor: colors.primary,
+        alignItems: 'center',
+        justifyContent: 'center'
     },
     headerTitle: {
         color: 'black',

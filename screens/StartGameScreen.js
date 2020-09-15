@@ -13,6 +13,7 @@ import {
 import Card from '../components/Card';
 import Colors from '../constants/colors';
 import Input from '../components/Input';
+import NumberContainer from '../components/NumberContainer';
 
 //function methos
 
@@ -44,14 +45,19 @@ const StartGameScreen = props => {
         setConfirmed(true)
         setSelectedNumber(chosenNumber);
         setEnteredValue('');
+        Keyboard.dismiss()
     }
 
     let confirmedOutput;
 
     if (confirmed) {
-        confirmedOutput = <Text>
-            Choosen number:{selectedNumber}
-        </Text>
+        confirmedOutput =
+            <Card style={styles.summaryContainer}>
+                <Text>You selected</Text>
+                <NumberContainer>{selectedNumber}</NumberContainer>
+                <Button title="Start Game"></Button>
+            </Card>
+
     }
 
     return (
@@ -62,8 +68,10 @@ const StartGameScreen = props => {
                 <Text style={styles.headerTitle}>{props.title}</Text>
                 <Card style={styles.inputContainer}>
                     <Text style={styles.title}>Select the number</Text>
-                    <Input style={styles.input} blurOnSubmit autoCorrect={false} autoCapitalize='none' keyboardType="number-pad" maxLength={2}
-
+                    <Input style={styles.input} blurOnSubmit autoCorrect={false}
+                        autoCapitalize='none'
+                        keyboardType="number-pad"
+                        maxLength={2}
                         onChangeText={numberInputHandler}
                         value={enteredValue}
                     >
@@ -119,6 +127,10 @@ const styles = StyleSheet.create({
     input: {
         width: 70,
         textAlign: "center"
+    },
+    summaryContainer: {
+        marginTop: 20,
+        alignItems: 'center'
     }
 })
 

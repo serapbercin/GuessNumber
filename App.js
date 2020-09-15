@@ -22,6 +22,10 @@ const App: () => React$Node = () => {
   const [userNumber, setUserNumber] = useState()
   const [guessRound, setGuessRound] = useState(0)
 
+  const configureNewGameHandler = () => {
+    setGuessRound(0)
+    setUserNumber(null)
+  }
   const startGameHandler = (selectedNumber) => {
     setUserNumber(selectedNumber)
     setGuessRound(0)
@@ -36,7 +40,7 @@ const App: () => React$Node = () => {
   if (userNumber && guessRound <= 0) {
     content = <GameScreen userChoice={userNumber} onGameOver={gameOverHandler}></GameScreen>
   } else if (guessRound > 0) {
-    content = <GameOverScreen></GameOverScreen>
+    content = <GameOverScreen roundsNumber={guessRound} userNumber={userNumber} onRestart={configureNewGameHandler}></GameOverScreen>
   }
 
   return (

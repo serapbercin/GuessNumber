@@ -6,7 +6,7 @@
  * @flow strict-local
  */
 
-import React from 'react';
+import React, { useState } from 'react';
 import {
   StyleSheet,
   View
@@ -14,13 +14,26 @@ import {
 
 import Header from './components/Header';
 import StartGameScreen from './screens/StartGameScreen'
+import GameScreen from './screens/GameScreen'
 
 const App: () => React$Node = () => {
+
+  const [userNumber, setUserNumber] = useState()
+
+  const startGameHandler = (selectedNumber) => {
+    setUserNumber(selectedNumber)
+  }
+
+  let content = <StartGameScreen onStartGame={startGameHandler} />
+
+  if (userNumber) {
+    content = <GameScreen userChoice={userNumber}></GameScreen>
+  }
+
   return (
     <View style={styles.screen}>
       <Header title={"Guess a Number"} />
-      <StartGameScreen title={"Start a new game!!"}>
-      </StartGameScreen>
+      {content}
     </View>
   );
 };

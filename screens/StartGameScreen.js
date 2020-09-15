@@ -18,13 +18,39 @@ import Input from '../components/Input';
 const StartGameScreen = props => {
     //what we want to render, how should it look like?
 
-
-
     const [enteredValue, setEnteredValue] = useState('');
+
+    const [confirmed, setConfirmed] = useState(false);
+    const [selectedNumber, setSelectedNumber] = useState();
+
+
     const numberInputHandler = inputText => {
         setEnteredValue(inputText.replace(/[^0-9]/g, ''));
     };
 
+    const resetInputHandler = () => {
+        setEnteredValue('')
+        setConfirmed(false)
+    }
+
+    const confirmInputHandler = () => {
+        const chosenNumber = parseInt(enteredValue)
+
+        if (chosenNumber === NaN || chosenNumber <= 0 || chosenNumber > 99) {
+            return;
+        }
+        setConfirmed(true)
+        setSelectedNumber(chosenNumber);
+        setEnteredValue('');
+    }
+
+    let confirmedOutput;
+
+    if (confirmed) {
+        confirmedOutput = <Text>
+            Choosen number:{selectedNumber}
+        </Text>
+    }
 
     return (
         <TouchableWithoutFeedback onPress={() => {
@@ -40,24 +66,21 @@ const StartGameScreen = props => {
                         value={enteredValue}
                     >
 
-
-
                     </Input>
                     <View style={styles.buttonContainer}>
                         <View style={styles.buttonStyle}>
-                            <Button title="Reset" onPress={() => {
-
-                            }} color={Colors.primary} />
+                            <Button title="Reset" onPress={
+                                resetInputHandler
+                            } color={Colors.primary} />
                         </View>
 
                         <View>
-                            <Button title="Confirm" onPress={() => {
-
-                            }} color={Colors.accent} />
+                            <Button title="Confirm" onPress={confirmInputHandler} color={Colors.accent} />
 
                         </View>
                     </View>
                 </Card>
+                {confirmedOutput}
             </View >
         </TouchableWithoutFeedback>);
 }

@@ -1,5 +1,6 @@
 # GuessNumber
 
+playing around with react-native for building a simple RN app which makes a guess the given number.
 
 # Application FLOW
 

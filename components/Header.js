@@ -28,9 +28,12 @@ const styles = StyleSheet.create({
         justifyContent: 'center'
     },
     headerTitle: {
-        color: 'black',
+        color: 'white',
         width: '100%',
-        height: 90
+        height: 90,
+        fontSize: 20,
+        textAlign: 'center',
+        textAlignVertical: "center"
     }
 })
 

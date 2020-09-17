@@ -10,3 +10,9 @@ playing around with react-native for building a simple RN app which makes a gues
 
 ![Alt text](./ss/4.png?raw=true "Game Over Screen")
 
+# Resources 
+
+FOR UI KIT:
+
+https://github.com/GeekyAnts/NativeBase
+https://github.com/react-native-training/react-native-elements

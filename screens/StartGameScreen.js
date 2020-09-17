@@ -15,6 +15,8 @@ import Colors from '../constants/colors';
 import Input from '../components/Input';
 import NumberContainer from '../components/NumberContainer';
 import BodyText from '../components/BodyText';
+import MainButton from '../components/MainButton';
+
 //function methos
 
 const StartGameScreen = props => {
@@ -55,7 +57,9 @@ const StartGameScreen = props => {
             <Card style={styles.summaryContainer}>
                 <BodyText>You selected</BodyText>
                 <NumberContainer>{selectedNumber}</NumberContainer>
-                <Button title="Start Game" onPress={() => props.onStartGame(selectedNumber)}></Button>
+                <MainButton onPress={() => props.onStartGame(selectedNumber)} >
+                    Start Game
+                </MainButton>
             </Card>
 
     }

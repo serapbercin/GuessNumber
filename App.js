@@ -10,7 +10,7 @@ import React, { useState } from 'react';
 import {
   StyleSheet,
   View,
-  Alert
+  Alert, ScrollView
 } from 'react-native';
 
 
@@ -43,12 +43,13 @@ const App: () => React$Node = () => {
     return (
       <AppLoading
         startAsync={fetchFonts}
-        onFinish={() =>{
+        onFinish={() => {
           setDataLoaded(true)
         }
         }
-        onError={(err) => { 
-          console.log(err)}
+        onError={(err) => {
+          console.log(err)
+        }
         }
       />
     );
@@ -73,7 +74,10 @@ const App: () => React$Node = () => {
   if (userNumber && guessRound <= 0) {
     content = <GameScreen userChoice={userNumber} onGameOver={gameOverHandler}></GameScreen>
   } else if (guessRound > 0) {
-    content = <GameOverScreen roundsNumber={guessRound} userNumber={userNumber} onRestart={configureNewGameHandler}></GameOverScreen>
+    content =
+      <ScrollView>
+        <GameOverScreen roundsNumber={guessRound} userNumber={userNumber} onRestart={configureNewGameHandler}></GameOverScreen>
+      </ScrollView>
   }
 
   return (

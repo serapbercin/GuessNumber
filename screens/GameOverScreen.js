@@ -6,7 +6,9 @@ import Colors from '../constants/colors'
 import MainButton from '../components/MainButton'
 
 const GameOverScreen = props => {
-    return (<View style={styles.screen}>
+    return (
+    
+    <View style={styles.screen}>
 
         <TitleText> Game is over</TitleText>
 

@@ -59,7 +59,7 @@ const StartGameScreen = props => {
             </Card>
 
     }
-    
+
     return (
         <TouchableWithoutFeedback onPress={() => {
             Keyboard.dismiss();
@@ -104,11 +104,15 @@ const styles = StyleSheet.create({
     headerTitle: {
         color: 'black',
         width: '100%',
-        height: 90
+        height: 90,
+        fontSize: 24,
+        textAlign: "center",
+        fontFamily: 'open-sans-bold'
     },
     title: {
         fontSize: 20,
-        marginVertical: 10
+        marginVertical: 10,
+        fontFamily: 'open-sans-bold'
     },
     inputContainer: {
         width: '300%',

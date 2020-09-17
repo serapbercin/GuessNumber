@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react'
-import { View, StyleSheet, Text, Alert } from 'react-native'
+import { View, StyleSheet, Text, Alert, ScrollView } from 'react-native'
 import { Ionicons } from '@expo/vector-icons'
 // check  documentations for icon and Material Icons 
 
@@ -24,11 +24,9 @@ const generateRandomBetween = (min, max, exclude) => {
 
 
 const GameScreen = props => {
-
-    const [currentGuess, setCurrentGuess] = useState(generateRandomBetween(1, 100, props.userChoice))
-
-
-    const [rounds, setRounds] = useState(0)
+    const initialGuess = generateRandomBetween(1, 100, props.userChoice)
+    const [currentGuess, setCurrentGuess] = useState(initialGuess)
+    const [pastGuesses, setPastGuesses] = useState([initialGuess])
 
     const currentLow = useRef(1)
     const currentHigh = useRef(100)
@@ -37,7 +35,7 @@ const GameScreen = props => {
 
     useEffect(() => {
         if (currentGuess === props.userChoice) {
-            props.onGameOver(rounds)
+            props.onGameOver(pastGuesses.length)
         }
     }, [currentGuess, userChoice, onGameOver])
 
@@ -52,12 +50,13 @@ const GameScreen = props => {
         if (direction === 'lower') {
             currentHigh.current = currentGuess
         } else {
-            currentLow.current = currentGuess
+            currentLow.current = currentGuess + 1
         }
 
         const nextNumber = generateRandomBetween(currentLow.current, currentHigh.current, currentGuess)
         setCurrentGuess(nextNumber)
-        setRounds(currondRounds => currondRounds + 1)
+        // setRounds(currondRounds => currondRounds + 1)
+        setPastGuesses(curPastGuesses => [nextNumber, ...curPastGuesses]);
     }
 
     return (<View style={styles.screen}>
@@ -68,7 +67,7 @@ const GameScreen = props => {
             {currentGuess}
         </NumberContainer>
         <Card style={styles.buttonContainer}>
-            
+
             <MainButton onPress={nextGuessHandler.bind(this, 'lower')}>
                 <Ionicons name="md-remove" size={24} color='white' />
             </MainButton>
@@ -78,6 +77,13 @@ const GameScreen = props => {
             </MainButton>
 
         </Card>
+        <ScrollView>
+            {pastGuesses.map(guess => (
+                <View key={guess}>
+                    <Text> {guess}</Text>
+                </View>
+            ))}
+        </ScrollView>
     </View>);
 }
 

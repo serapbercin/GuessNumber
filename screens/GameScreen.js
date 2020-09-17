@@ -7,6 +7,7 @@ import NumberContainer from '../components/NumberContainer'
 import Card from '../components/Card'
 import DefaultStyles from '../constants/default-styles'
 import MainButton from '../components/MainButton'
+import BodyText from '../components/BodyText'
 
 const generateRandomBetween = (min, max, exclude) => {
     min = Math.ceil(min)
@@ -21,7 +22,12 @@ const generateRandomBetween = (min, max, exclude) => {
     }
 }
 
-
+const renderListItem = (value, numOfRound) => {
+    return <View key={value} style={styles.listItem}>
+        <BodyText>#{numOfRound}</BodyText>
+        <BodyText> {value}</BodyText>
+    </View>
+}
 
 const GameScreen = props => {
     const initialGuess = generateRandomBetween(1, 100, props.userChoice)
@@ -77,13 +83,11 @@ const GameScreen = props => {
             </MainButton>
 
         </Card>
-        <ScrollView>
-            {pastGuesses.map(guess => (
-                <View key={guess}>
-                    <Text> {guess}</Text>
-                </View>
-            ))}
-        </ScrollView>
+        <View style={styles.list}>
+            <ScrollView>
+                {pastGuesses.map((guess, index) => renderListItem(guess, pastGuesses.length - index))}
+            </ScrollView>
+        </View>
     </View>);
 }
 
@@ -100,6 +104,20 @@ const styles = StyleSheet.create({
         marginTop: 20,
         width: 400,
         maxWidth: '90%'
+    },
+    list: {
+        flex: 1,
+        // flex is added otherwise list item can not be scrolable
+        width: '80%'
+    },
+    listItem: {
+        borderColor: '#ccc',
+        borderWidth: 1,
+        padding: 15,
+        marginVertical: 10,
+        backgroundColor: 'white',
+        flexDirection: 'row',
+        justifyContent: 'space-between'
     }
 })
 

@@ -12,22 +12,35 @@ import TitleText from '../components/TitleText';
 
 const Header = props => {
     return (
-        <View style={styles.header}>
+        <View style={{
+            ...styles.headerBase,
+            ...Platform.select({
+                ios: styles.headerIOS,
+                android: styles.headerAndroid
+            })
+        }}>
             <TitleText style={styles.title}>{props.title}</TitleText>
         </View>
     );
 }
 
 const styles = StyleSheet.create({
-    header: {
+    headerBase: {
         width: '100%',
         height: 90,
         padding: 24,
-        backgroundColor: Platform.OS === 'android' ? Colors.primary : 'white',
         alignItems: 'center',
         justifyContent: 'center',
-        borderBottomColor: Platform.OS == 'android' ? 'transparent' : '#ccc',
-        borderBottomWidth: Platform.OS == 'android' ? 0 : 1
+    },
+    headerIOS: {
+        borderBottomColor: '#ccc',
+        borderBottomWidth: 1,
+        backgroundColor: 'white',
+    },
+    headerAndroid: {
+        borderBottomColor: 'transparent',
+        borderBottomWidth: 0,
+        backgroundColor: Colors.primary,
     },
     title: {
         color: Platform.OS == 'android' ? 'white' : Colors.primary

@@ -27,6 +27,11 @@ FOR UI KIT:
 https://github.com/GeekyAnts/NativeBase
 https://github.com/react-native-training/react-native-elements
 
+ FOR Responsive & Adaptive User Interface
+
+- Dimensions API - Official Docs: https://facebook.github.io/react-native/docs/dimensions#docsNav
+- Platform-specific Code - Official Docs: https://facebook.github.io/react-native/docs/platform-specific-code
+
 # Some Usefull Short Cut
 
 - Scan the QR code above with the Expo app (Android) or the Camera app (iOS).

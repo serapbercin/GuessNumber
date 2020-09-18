@@ -9,7 +9,8 @@ import {
     Keyboard,
     Alert,
     ScrollView,
-    Dimensions
+    Dimensions,
+    KeyboardAvoidingView
 } from 'react-native';
 
 import Card from '../components/Card';
@@ -67,40 +68,43 @@ const StartGameScreen = props => {
     }
 
     return (
-        <TouchableWithoutFeedback onPress={() => {
-            Keyboard.dismiss();
-        }}>
-            <ScrollView>
-                <View style={styles.screen}>
-                    <Text style={styles.headerTitle}>{props.title}</Text>
-                    <Card style={styles.inputContainer}>
-                        <Text style={styles.title}>Select the number</Text>
-                        <Input style={styles.input} blurOnSubmit autoCorrect={false}
-                            autoCapitalize='none'
-                            keyboardType="number-pad"
-                            maxLength={2}
-                            onChangeText={numberInputHandler}
-                            value={enteredValue}
-                        >
+        <ScrollView>
+            <KeyboardAvoidingView behavior="position" keyboardVerticalOffset={30}>
+                <TouchableWithoutFeedback onPress={() => {
+                    Keyboard.dismiss();
+                }}>
 
-                        </Input>
-                        <View style={styles.buttonContainer}>
-                            <View style={styles.buttonStyle}>
-                                <Button title="Reset" onPress={
-                                    resetInputHandler
-                                } color={Colors.primary} />
+                    <View style={styles.screen}>
+                        <Text style={styles.headerTitle}>{props.title}</Text>
+                        <Card style={styles.inputContainer}>
+                            <Text style={styles.title}>Select the number</Text>
+                            <Input style={styles.input} blurOnSubmit autoCorrect={false}
+                                autoCapitalize='none'
+                                keyboardType="number-pad"
+                                maxLength={2}
+                                onChangeText={numberInputHandler}
+                                value={enteredValue}
+                            >
+
+                            </Input>
+                            <View style={styles.buttonContainer}>
+                                <View style={styles.buttonStyle}>
+                                    <Button title="Reset" onPress={
+                                        resetInputHandler
+                                    } color={Colors.primary} />
+                                </View>
+
+                                <View>
+                                    <Button title="Confirm" onPress={confirmInputHandler} color={Colors.accent} />
+
+                                </View>
                             </View>
-
-                            <View>
-                                <Button title="Confirm" onPress={confirmInputHandler} color={Colors.accent} />
-
-                            </View>
-                        </View>
-                    </Card>
-                    {confirmedOutput}
-                </View >
-            </ScrollView>
-        </TouchableWithoutFeedback>);
+                        </Card>
+                        {confirmedOutput}
+                    </View >
+                </TouchableWithoutFeedback>
+            </KeyboardAvoidingView>
+        </ScrollView>);
 }
 
 const styles = StyleSheet.create({

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import {
     View,
@@ -26,9 +26,24 @@ const StartGameScreen = props => {
     //what we want to render, how should it look like?
 
     const [enteredValue, setEnteredValue] = useState('');
-
     const [confirmed, setConfirmed] = useState(false);
     const [selectedNumber, setSelectedNumber] = useState();
+    const [buttonWidth, setButtonWidth] = useState(Dimensions.get('window').width / 4)
+
+
+
+    useEffect(() => {
+
+        const updateLayout = () => {
+            setButtonWidth(Dimensions.get('window').width / 4)
+        }
+
+        Dimensions.addEventListener('change', updateLayout)
+
+        return () => {
+            Dimensions.removeEventListener('change', updateLayout)
+        }
+    })
 
 
     const numberInputHandler = inputText => {
@@ -88,13 +103,13 @@ const StartGameScreen = props => {
 
                             </Input>
                             <View style={styles.buttonContainer}>
-                                <View style={styles.buttonStyle}>
+                                <View style={{ width: buttonWidth }}>
                                     <Button title="Reset" onPress={
                                         resetInputHandler
                                     } color={Colors.primary} />
                                 </View>
 
-                                <View>
+                                <View style={{ width: buttonWidth }}>
                                     <Button title="Confirm" onPress={confirmInputHandler} color={Colors.accent} />
 
                                 </View>
@@ -141,6 +156,7 @@ const styles = StyleSheet.create({
     buttonStyle: {
         width: Dimensions.get('window').width / 4
         // by doing that, always respect to your device size
+        // keep in mind, this is only calculating when app starts
     },
     input: {
         width: 70,

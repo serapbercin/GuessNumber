@@ -9,8 +9,8 @@
 import React, { useState } from 'react';
 import {
   StyleSheet,
-  View,
-  Alert, ScrollView
+  ScrollView,
+  SafeAreaView
 } from 'react-native';
 
 
@@ -81,10 +81,10 @@ const App: () => React$Node = () => {
   }
 
   return (
-    <View style={styles.screen}>
+    <SafeAreaView style={styles.screen}>
       <Header title={"Guess a Number"} />
       {content}
-    </View>
+    </SafeAreaView>
   );
 };
 

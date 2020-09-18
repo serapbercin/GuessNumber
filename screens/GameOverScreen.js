@@ -7,6 +7,7 @@ import MainButton from '../components/MainButton'
 
 const GameOverScreen = props => {
     return (
+
         <ScrollView>
             <View style={styles.screen}>
 
@@ -36,7 +37,8 @@ const GameOverScreen = props => {
                     NEW GAME
         </MainButton>
             </View>
-        </ScrollView>)
+        </ScrollView>
+    )
 }
 
 
